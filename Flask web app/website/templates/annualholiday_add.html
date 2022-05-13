@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}Éves szabadságok{% endblock %} 
+
+{% block content %}
+
+{% with caption='Új éves szabadság', image='fa fa-building-o' %}
+{% include "card_header.html" %}
+{% endwith %}
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group days_off_form_group">
+                                        <label class="col-sm-12 control-label">
+                                            Szabadnapok száma
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <select id='userid' class='form-select form-select-sm'
+                                                name='userid' style="width: 100%;">
+                                                {% for usr in users %}
+                                                <option value="{{ usr.id }}">{{ usr.first_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% with fieldlabel='Év', fieldname='year', fieldtype='number', fieldlength='4', fieldvalue='2022' %}
+                                {% include "card_field.html" %}
+                                {% endwith %}
+
+                                {% with fieldlabel='Szabadnapok száma', fieldname='days_off', fieldtype='number', fieldlength='3', fieldvalue='0' %}
+                                {% include "card_field.html" %}
+                                {% endwith %}
+
+                            </div>
+                        </div>
+
+{% with backurl='/annualholiday' %}
+{% include "card_footer.html" %}
+{% endwith %}
+{% endblock %}
