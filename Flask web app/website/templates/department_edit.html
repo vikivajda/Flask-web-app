@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %}Területek{% endblock %}
+
+
+{% block content %}
+
+{% with caption='Terület szerkesztése', image='fa fa-building-o' %}
+{% include "card_header.html" %}
+{% endwith %}
+
+
+                        <div class="card-body">
+                            <div class="row">
+                              <input type="hidden" name="departmentID" id="departmentID" value="{{department.id}}" class="form-control"></input>
+                              <div class="col-md-6">
+                                    <div class="form-group department_form_group">
+                                        <label class="col-sm-12 control-label">
+                                            Terület
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input id='department' class='form-control form-control-sm'
+                                                name='department' type='text' value="{{department.data}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group min_employees_form_group">
+                                        <label class="col-sm-12 control-label">
+                                            Minimum dolgozói létszám
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input id='min_employees' class='form-control form-control-sm'
+                                                name='min_employees' type='number' value="{{department.min_employees}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+{% with backurl='/department' %}
+{% include "card_footer.html" %}
+{% endwith %}
+                        
+{% endblock %}

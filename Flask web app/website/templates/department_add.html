@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Területek{% endblock %}
+
+
+{% block content %}
+
+
+{% with caption='Terület szerkesztése', image='fa fa-building-o' %}
+{% include "card_header.html" %}
+{% endwith %}
+                        <div class="card-body">
+                            <div class="row">
+
+                                {% with fieldlabel='Terület', fieldname='department', fieldtype='text', fieldlength='200', fieldvalue='' %}
+                                {% include "card_field.html" %}
+                                {% endwith %}
+
+                                {% with fieldlabel='Minimum dolgozói létszám', fieldname='min_employees', fieldtype='number', fieldlength='3', fieldvalue='1' %}
+                                {% include "card_field.html" %}
+                                {% endwith %}
+
+                            </div>
+                        </div>
+
+{% with backurl='/department' %}
+{% include "card_footer.html" %}
+{% endwith %}
+                        
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Éves szabadságok{% endblock %} 
+{% block content %}
+  <h1 align="center">Éves szabadságok</h1>
+  <button type="button" class="btn btn-primary btn-sm rounded-0" onClick="location.href='/annualholiday/add'" data-toggle="tooltip" title="Add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Új éves szabadság</button>  
+  <table class="display" style="width:100%" id="datatable">
+    <thead>
+      <tr>
+          <th>Dolgozó</th>
+          <th>Év</th>
+          <th>Szabadnapok száma</th>
+          <th>-</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for holiday in holidays %}
+      <tr>
+          <td>{{ holiday.user.first_name }}</td>
+          <td>{{ holiday.year}}</td>
+          <td>{{ holiday.days_off }}</td>
+          <td><a class="btn btn-success btn-sm rounded-0" href="/annualholiday/edit/{{holiday.id}}"><i class="fa fa-edit"></i></a>
+          <button type="button" class="btn btn-danger btn-sm rounded-0" onClick="deleteHoliday({{ holiday.id }})" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i>
+            </button>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% include 'deletedialog.html' %}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='annualholiday.js') }}"></script>
+
+  <script>
+
+    $(document).ready(function() {
+      $.noConflict();
+      $('#datatable').DataTable();
+      } );
+
+    
+  </script>
+
+  {% endblock %}
